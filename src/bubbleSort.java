@@ -1,30 +1,24 @@
 import java.util.Arrays;
 
-public class bubbleSort
-{
-    void sort(int arr[])
-    {
+public class bubbleSort {
+    void sort(int[] arr) {
         int n = arr.length;
 
-        for(int i = 0; i < n -1; i++)
-        {
-            for(int j = 0; j < n-i-1; j++)
-            {
-                if (arr[j] > arr[j+1])
-                {
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
                     int temp = arr[j];
-                    arr[j] = arr[j+1];
-                    arr[j+1] = temp;
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
                 }
             }
         }
 
     }
 
-    public static void main(String args[])
-    {
+    public static void main(String[] args) {
         bubbleSort bs = new bubbleSort();
-        int arr[] = {89,34,1343,12,123,1};
+        int[] arr = {89, 34, 1343, 12, 123, 1};
         bs.sort(arr);
         System.out.println(Arrays.toString(arr));
     }
