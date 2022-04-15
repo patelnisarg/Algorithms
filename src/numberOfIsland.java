@@ -22,38 +22,73 @@
  * Output: 3
  */
 public class numberOfIsland {
-    public static int solution(char[][] grid){
-        if(grid.length == 0 || grid == null){
-            return 0;
-        }
-        int output = 0;
-
-        for(int i = 0; i < grid.length; i++){
-            for(int j = 0; j < grid[i].length; j++){
-                if(grid[i][j] == '1'){
-                    output++;
-                    dfs(grid, i, j);
+    private char[][] grid;
+    private boolean[][] seen;
+    private int output = 0;
+    public int solution(char[][] grid){
+        this.grid = grid;
+        this.seen = new boolean[grid.length][grid[0].length];
+        for(int row = 0; row < grid.length; row++){
+            for(int col = 0; col < grid[0].length; col++){
+                if(grid[row][col] == 1){
+                    dfs(row, col);
                 }
             }
         }
         return output;
     }
 
-    public static void dfs(char[][] grid, int i, int j){
-        if(grid[i][j] == '0' || i < 0 || i >= grid.length || j < 0 || j >= grid[i].length){
+    private void dfs(int row, int col){
+        if(row < 0 || col < 0 || row >= grid.length || col >= grid[0].length){
             return;
         }
-
-        grid[i][j] = '0';
-        dfs(grid, i - 1, j); // down
-        dfs(grid, i + 1, j); //up
-        dfs(grid, i, j - 1); //left
-        dfs(grid, i, j + 1); //right
+        if(seen[row][col] || grid[row][col] == 0) {
+            return;
+        }
+        seen[row][col] = true;
+        output += 1;
+        dfs(row-1, col);
+        dfs(row+1, col);
+        dfs(row, col-1);
+        dfs(row, col+1);
     }
 
     public static void main(String[] args){
         char[][] grid = new char[][]{ {'1', '1','0','0','0'}, {'1','1','0','0','0'},{'0','0','1','0','0'}, {'0','0','0','1','1'} };
-        int ans = solution(grid);
-        System.out.print(ans);
+        numberOfIsland nis = new numberOfIsland();
+//        int ans = nis.solution(grid);
+        System.out.print(nis.solution(grid));
     }
 }
+
+
+
+
+//    public static int solution(char[][] grid){
+//        if(grid.length == 0 || grid == null){
+//            return 0;
+//        }
+//        int output = 0;
+//
+//        for(int i = 0; i < grid.length; i++){
+//            for(int j = 0; j < grid[i].length; j++){
+//                if(grid[i][j] == '1'){
+//                    output++;
+//                    dfs(grid, i, j);
+//                }
+//            }
+//        }
+//        return output;
+//    }
+//
+//    public static void dfs(char[][] grid, int i, int j){
+//        if(grid[i][j] == '0' || i < 0 || i >= grid.length || j < 0 || j >= grid[i].length){
+//            return;
+//        }
+//
+//        grid[i][j] = '0';
+//        dfs(grid, i - 1, j); // down
+//        dfs(grid, i + 1, j); //up
+//        dfs(grid, i, j - 1); //left
+//        dfs(grid, i, j + 1); //right
+//    }
