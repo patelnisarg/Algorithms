@@ -7,6 +7,26 @@ public class interval {
         };
         int interval = findInterval(intervals, 60);
         System.out.println(interval);
+
+
+        int[][] intervals1 = {
+                {0,30},
+        };
+        int interval1 = findInterval(intervals1, 60);
+        System.out.println(interval1);
+
+
+        int[][] intervals2 = {
+                {0,30},
+        };
+        int interval2 = findInterval(intervals2, 0);
+        System.out.println(interval2);
+
+        int[][] intervals3 = {
+                {0,30},
+        };
+        int interval3 = findInterval(intervals3, 12*60);
+        System.out.println(interval3);
     }
 
     private static int findInterval(int[][] intervals, int duration){
@@ -28,6 +48,6 @@ public class interval {
             }
         }
 
-        return currStartTime > (12*60)? -1 : (currStartTime + intervals[intervals.length-1][1]);
+        return (currStartTime + intervals[intervals.length-1][1] + duration) > (12*60)? -1 : currStartTime + intervals[intervals.length-1][1];
     }
 }
